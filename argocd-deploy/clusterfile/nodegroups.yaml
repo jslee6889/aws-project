@@ -1,0 +1,30 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: awsproject100
+  region: ap-northeast-2
+  version: "1.24"
+
+# AZ
+availabilityZones: ["ap-northeast-2a",  "ap-northeast-2c"]
+
+# Managed Node Groups
+managedNodeGroups:
+  # On-Demand Instance
+  - name: nodes-t3
+    instanceType: t3.large
+    minSize: 2
+    desiredCapacity: 2
+    maxSize: 5
+    privateNetworking: true # 워커노드를 프라이빗 네트워크에 감춘다.
+    #ssh:
+      #allow: true
+      #publicKeyPath: ./keypair/myeks.pub
+    availabilityZones: ["ap-northeast-2a", "ap-northeast-2c"]
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        albIngress: true
+        cloudWatch: true
+        ebs: true
