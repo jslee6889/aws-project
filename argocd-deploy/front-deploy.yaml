@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      name: front-deploy
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: front-app
+        image: public.ecr.aws/f2d8b1j8/jslee:latest
+        ports:
+        - containerPort: 80
+          protocol : TCP
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - frontend-user
+            topologyKey: "kubernetes.io/hostname"
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - backend
+            topologyKey: "kubernetes.io/hostname"
