@@ -2,17 +2,19 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: back-hpa
+  namespace: deploy
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: back-deploy-mounted2 # backend Deployment와 연결
+    name: back-deploy # backend Deployment와 연결
   minReplicas: 2
-  maxReplicas: 8
+  maxReplicas: 10
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 70
+        averageUtilization: 50
+
