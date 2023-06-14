@@ -1,8 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: back-deploy-mounted2
-  namespace: deploy
+  name: back-deploy-mounted3
 spec:
   selector:
     matchLabels:
@@ -15,7 +14,7 @@ spec:
     spec:
       containers:
       - name: back-app
-        image: 543059955777.dkr.ecr.ap-northeast-2.amazonaws.com/ljs2-ecr-test1:1.2
+        image: smlinux/hpa-example
         ports:
         - containerPort: 8080
           protocol: TCP

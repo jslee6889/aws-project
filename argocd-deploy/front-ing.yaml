@@ -2,17 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: front-ing
+  namespace: deploy
   annotations: # AWS에서 ALB로 사용할수 있게 함
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:543059955777:certificate/ffb1b3ac-30c7-498a-83a5-943c535c49d3
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-    alb.ingress.kubernetes.io/tls-redirect: '443'
 spec:
   rules:
-  - host: "awspractice01.store"
-    http:
+  - http:
       paths:
       - path: /
         pathType: Prefix

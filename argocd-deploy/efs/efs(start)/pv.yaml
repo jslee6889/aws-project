@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-sc    
+  hostPath:
+    path: /dynamic_provisioning/pvc-98551678-3d9e-49ce-b197-3e27fdc93edc
+
