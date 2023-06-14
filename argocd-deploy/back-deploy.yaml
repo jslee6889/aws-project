@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: back-app
-        image: 543059955777.dkr.ecr.ap-northeast-2.amazonaws.com/ljs2-ecr-test1:latest
+        image: 543059955777.dkr.ecr.ap-northeast-2.amazonaws.com/ljs2-ecr-test1:1.1
         ports:
         - containerPort: 8080
           protocol: TCP
