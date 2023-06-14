@@ -29,9 +29,6 @@ spec:
                 values:
                 - frontend-user
             topologyKey: "kubernetes.io/hostname"
-            namespaceSelector:
-              matchLabels:
-                name: default
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
